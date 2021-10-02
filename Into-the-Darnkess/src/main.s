@@ -1,6 +1,8 @@
 .include "cpctelera.h.s"
 .include "cpctelerafunction.h.s"
 
+;;Main con dos entidades 
+;;Player y Enemy
 .area _DATA
 .area _CODE
 
