@@ -9,7 +9,18 @@ _num_entities::  .db 0
 _last_elem_ptr:: .dw _entity_array
 _entity_array::
     .ds max_entities*entity_size
-    
+
+
+entityman_getEntityVector_IX::
+
+    ld ix, #_entity_array
+ret
+
+entityman_getNumEntities_A::
+    ld a, (_num_entities)
+ret
+
+
 entityman_create::
     
     ld de, (_last_elem_ptr)

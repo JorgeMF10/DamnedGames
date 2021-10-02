@@ -13,6 +13,8 @@ _main::
    ;; Disable firmware to prevent it from interfering with string drawing
    call cpct_disableFirmware_asm
 
+   call rendersys_init
+
    ld hl, #player
    call entityman_create
 
@@ -22,10 +24,11 @@ _main::
    ld ix, #_entity_array
    ld a, (_num_entities)
 
-   call rendersys_update
-loop:
    
-
+loop:
+   call entityman_getEntityVector_IX
+   call entityman_getNumEntities_A
+   call rendersys_update
    call cpct_waitVSYNC_asm
    ;; Loop forever
 
