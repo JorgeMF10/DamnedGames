@@ -1,0 +1,24 @@
+DEF .__.ABS. 0x0
+DEF l__DATA 0x0
+DEF max_entities 0x3
+DEF entity_size 0x7
+DEF l__CODE 0x155
+DEF s__CODE 0x4000
+DEF s__DATA 0x4155
+DEF _num_entities 0x4000
+DEF _last_elem_ptr 0x4001
+DEF _entity_array 0x4003
+DEF entityman_create 0x4018
+DEF _main 0x4041
+DEF rendersys_init 0x405F
+DEF rendersys_update 0x4060
+DEF _cpct_waitVSYNC 0x4085
+DEF cpct_waitVSYNC_asm 0x4085
+DEF _cpct_disableFirmware 0x408D
+DEF _cpct_removeInterruptHandler 0x408D
+DEF cpct_disableFirmware_asm 0x408D
+DEF cpct_removeInterruptHandler_asm 0x408D
+DEF cpct_drawSolidBox_asm 0x409D
+DEF _cpct_mode_rom_status 0x4140
+DEF cpct_getScreenPtr_asm 0x4141
+LOAD obj/Into-the-Darnkess.ihx
