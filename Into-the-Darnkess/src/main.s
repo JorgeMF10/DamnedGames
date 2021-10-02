@@ -1,5 +1,7 @@
 .include "cpctelera.h.s"
 .include "cpctelerafunction.h.s"
+.include "render_system.h.s"
+.include "entity_manager.h.s"
 
 ;;Main con dos entidades 
 ;;Player y Enemy
