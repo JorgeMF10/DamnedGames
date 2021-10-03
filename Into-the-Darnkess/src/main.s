@@ -8,8 +8,12 @@
 .area _DATA
 .area _CODE
 
-player: .db 20, 20, 2,  8,  1, 1, 0xFF
-enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
+;;player: .db 20, 20, 2,  8,  1, 1, 0xFF
+;;enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
+
+
+DefineEntity player, 20, 20, 1, 1, 2, 8, 0xF0
+DefineEntity enemy, 40, 80, -1, 0, 3, 12, 0xFF
 
 _main::
    ;; Disable firmware to prevent it from interfering with string drawing
