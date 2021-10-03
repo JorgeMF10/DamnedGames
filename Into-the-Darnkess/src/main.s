@@ -13,7 +13,7 @@
 
 
 DefineEntity player, 20, 20, 1, 1, 2, 8, 0xF0
-DefineEntity enemy, 40, 80, -1, 0, 3, 12, 0xFF
+;;DefineEntity enemy, 40, 80, -1, 0, 3, 12, 0xFF
 
 _main::
    ;; Disable firmware to prevent it from interfering with string drawing
@@ -24,8 +24,8 @@ _main::
    ld hl, #player
    call entityman_create
 
-   ld hl, #enemy
-   call entityman_create
+   ;;ld hl, #enemy
+   ;;call entityman_create
 
    ld ix, #_entity_array
    ld a, (_num_entities)

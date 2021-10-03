@@ -42,6 +42,5 @@ sizeof_e = 7
 ;;
 ;;CONSTANTES
 ;;Estas no se si estan bien. Fran no las incluye en el video
-.globl entity_size
 .globl _num_entities
 .globl _entity_array
