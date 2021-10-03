@@ -2,6 +2,8 @@
 ;; RENDER SYSTEM
 ;; 
 .include "cpctelerafunction.h.s"
+.include "entity_manager.h.s"
+
 
 
 rendersys_init::
