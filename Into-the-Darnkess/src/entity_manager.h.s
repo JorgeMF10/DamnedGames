@@ -23,6 +23,13 @@
         DefineEntityAnnonimous
 .endm
 
+.macro DefineEntityArray _name, _N
+    _name::
+        .rept _N
+            DefineEntityAnnonimous 0xDE, 0xAD, 0xDE, 0xAD, 0xDE, 0xAD, 0xAA
+        .endm
+.endm
+
 e_x = 0
 e_y = 1
 e_w = 2
@@ -31,13 +38,6 @@ e_vx = 4
 e_vy = 5
 e_col = 6
 sizeof_e = 7
-
-.macro DefineEntityArray _name, _N
-    _name::
-        .rept _N
-            DefineEntityAnnonimous 0xDE, 0xAD, 0xDE, 0xAD, 0xDE, 0xAD, 0xAA
-        .endm
-.endm
 
 ;;
 ;;CONSTANTES
