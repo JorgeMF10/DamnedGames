@@ -4,6 +4,8 @@
 .globl entityman_getEntityVector_IX
 .globl entityman_getNumEntities_A
 .globl entityman_create
+.globl man_entity_new
+.globl man_entity_init
 
 ;;Macro creacion de entidades
 .macro DefineEntityAnnonimous _x, _y, _vx, _vy, _w, _h, _color

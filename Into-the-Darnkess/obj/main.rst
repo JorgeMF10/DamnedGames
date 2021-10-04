@@ -4410,7 +4410,7 @@ Hexadecimal [16-Bits]
 
 
                               2 .include "cpctelerafunction.h.s"
-                              1 
+                              1 ;;Fichero de cabecera para las funciones internas de CPC_TELERA
                               2 .globl cpct_disableFirmware_asm
                               3 .globl cpct_getScreenPtr_asm
                               4 .globl cpct_drawSolidBox_asm
@@ -4420,33 +4420,111 @@ Hexadecimal [16-Bits]
 
 
 
-                              3 
-                              4 .area _DATA
-                              5 .area _CODE
+                              3 .include "render_system.h.s"
+                              1 ;;
+                              2 ;;  CABECERA DE LAS FUNCIONES DE RENDERSYS
+                              3 ;;
+                              4 .globl rendersys_init
+                              5 .globl rendersys_update
                               6 
-   4033 14 14 02 08 01 01     7 player: .db 20, 20, 2,  8,  1, 1, 0xFF
-        FF
-   403A 28 50 03 0C FF 00     8 enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
-        F0
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 85.
+Hexadecimal [16-Bits]
+
+
+
+                              4 .include "entity_manager.h.s"
+                              1 ;;
+                              2 ;;CABECERA DE ENTITYMANAGER
+                              3 ;;
+                              4 .globl entityman_getEntityVector_IX
+                              5 .globl entityman_getNumEntities_A
+                              6 .globl entityman_create
+                              7 .globl man_entity_new
+                              8 .globl man_entity_init
                               9 
-   4041                      10 _main::
-                             11    ;; Disable firmware to prevent it from interfering with string drawing
-   4041 CD 8D 40      [17]   12    call cpct_disableFirmware_asm
-                             13 
-   4044 21 33 40      [10]   14    ld hl, #player
-   4047 CD 18 40      [17]   15    call entityman_create
-                             16 
-   404A 21 3A 40      [10]   17    ld hl, #enemy
-   404D CD 18 40      [17]   18    call entityman_create
-                             19 
-   4050 DD 21 03 40   [14]   20    ld ix, #_entity_array
-   4054 3A 00 40      [13]   21    ld a, (_num_entities)
+                             10 ;;Macro creacion de entidades
+                             11 .macro DefineEntityAnnonimous _x, _y, _vx, _vy, _w, _h, _color
+                             12    
+                             13    .db _x
+                             14    .db _y
+                             15    .db _vx
+                             16    .db _vy
+                             17    .db _w
+                             18    .db _h
+                             19    .db _color
+                             20    
+                             21 .endm
                              22 
-   4057 CD 60 40      [17]   23    call rendersys_update
-   405A                      24 loop:
-                             25    
-                             26 
-   405A CD 85 40      [17]   27    call cpct_waitVSYNC_asm
-                             28    ;; Loop forever
-                             29 
-   405D 18 FB         [12]   30    jr    loop
+                             23 .macro DefineEntity _name, _x, _y, _vx, _vy, _w, _h, _color
+                             24     _name::
+                             25         DefineEntityAnnonimous
+                             26 .endm
+                             27 
+                             28 .macro DefineEntityArray _name, _N
+                             29     _name::
+                             30         .rept _N
+                             31             DefineEntityAnnonimous 0xDE, 0xAD, 0xDE, 0xAD, 0xDE, 0xAD, 0xAA
+                             32         .endm
+                             33 .endm
+                             34 
+                     0000    35 e_x = 0
+                     0001    36 e_y = 1
+                     0002    37 e_w = 2
+                     0003    38 e_h = 3
+                     0004    39 e_vx = 4
+                     0005    40 e_vy = 5
+                     0006    41 e_col = 6
+                     0007    42 sizeof_e = 7
+                             43 
+                             44 ;;
+                             45 ;;CONSTANTES
+                             46 ;;Estas no se si estan bien. Fran no las incluye en el video
+                             47 .globl _num_entities
+                             48 .globl _entity_array
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 86.
+Hexadecimal [16-Bits]
+
+
+
+                              5 
+                              6 ;;Main con dos entidades 
+                              7 ;;Player y Enemy
+                              8 .area _DATA
+                              9 .area _CODE
+                             10 
+   407D 14 14 02 08 01 01    11 player: .db 20, 20, 2,  8,  1, 1, 0xFF
+        FF
+   4084 28 50 03 0C FF 00    12 enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
+        F0
+                             13 
+                             14 
+                             15 ;;DefineEntity player, 20, 20, 1, 1, 2, 8, 0xF0
+                             16 ;;DefineEntity enemy, 40, 80, -1, 0, 3, 12, 0xFF
+                             17 
+   408B                      18 _main::
+                             19    ;; Disable firmware to prevent it from interfering with string drawing
+   408B CD DD 40      [17]   20    call cpct_disableFirmware_asm
+                             21 
+   408E 21 7D 40      [10]   22    ld hl, #player
+   4091 CD 4E 40      [17]   23    call entityman_create
+                             24    
+   4094 21 84 40      [10]   25    ld hl, #enemy
+   4097 CD 4E 40      [17]   26    call entityman_create
+                             27 
+                             28    ;;call rendersys_init
+                             29    ;;call man_game_init
+                             30 
+   409A DD 21 03 40   [14]   31    ld ix, #_entity_array
+   409E 3A 00 40      [13]   32    ld a, (_num_entities)
+                             33 
+                             34    
+   40A1                      35 loop:
+                             36 
+                             37 
+   40A1 CD 18 40      [17]   38    call entityman_getEntityVector_IX
+   40A4 CD 1D 40      [17]   39    call entityman_getNumEntities_A
+   40A7 CD B0 40      [17]   40    call rendersys_update
+   40AA CD D5 40      [17]   41    call cpct_waitVSYNC_asm
+                             42    ;; Loop forever
+                             43 
+   40AD 18 F2         [12]   44    jr    loop

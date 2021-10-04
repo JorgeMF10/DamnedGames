@@ -3,7 +3,7 @@ Hexadecimal [16-Bits]
 
 
 
-                              1 
+                              1 ;;Fichero de cabecera para las funciones internas de CPC_TELERA
                               2 .globl cpct_disableFirmware_asm
                               3 .globl cpct_getScreenPtr_asm
                               4 .globl cpct_drawSolidBox_asm

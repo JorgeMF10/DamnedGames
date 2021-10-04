@@ -1,8 +1,14 @@
 XL2
-H 1 areas 8 global symbols
+H 1 areas E global symbols
+S man_entity_init Ref0000
+S entityman_getNumEntities_A Ref0000
 S .__.ABS. Def0000
+S man_entity_new Ref0000
+S entityman_getEntityVector_IX Ref0000
+S entityman_create Ref0000
 S cpct_waitVSYNC_asm Ref0000
-S entity_size Ref0000
+S _num_entities Ref0000
+S _entity_array Ref0000
 S cpct_disableFirmware_asm Ref0000
 S cpct_drawSolidBox_asm Ref0000
 S cpct_getScreenPtr_asm Ref0000
@@ -18,8 +24,8 @@ R 00 00 00 00
 T 01 00
 R 00 00 00 00
 T 01 00 F5 11 00 C0 DD 4E 00 DD 46 01 CD 00 00 EB
-R 00 00 00 00 02 0D 05 00
+R 00 00 00 00 02 0D 0B 00
 T 0F 00 DD 7E 06 DD 4E 02 DD 46 03 CD 00 00 F1 3D
-R 00 00 00 00 02 0C 04 00
-T 1D 00 C8 01 00 00 DD 09 18 DC C9
-R 00 00 00 00 02 04 02 00
+R 00 00 00 00 02 0C 0A 00
+T 1D 00 C8 01 07 00 DD 09 18 DC C9
+R 00 00 00 00

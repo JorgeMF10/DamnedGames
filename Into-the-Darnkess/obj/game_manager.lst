@@ -3,26 +3,7 @@ Hexadecimal [16-Bits]
 
 
 
-                              1 ;;
-                              2 ;; RENDER SYSTEM
-                              3 ;; 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
-Hexadecimal [16-Bits]
-
-
-
-                              4 .include "cpctelerafunction.h.s"
-                              1 ;;Fichero de cabecera para las funciones internas de CPC_TELERA
-                              2 .globl cpct_disableFirmware_asm
-                              3 .globl cpct_getScreenPtr_asm
-                              4 .globl cpct_drawSolidBox_asm
-                              5 .globl cpct_waitVSYNC_asm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
-Hexadecimal [16-Bits]
-
-
-
-                              5 .include "entity_manager.h.s"
+                              1 .include "entity_manager.h.s"
                               1 ;;
                               2 ;;CABECERA DE ENTITYMANAGER
                               3 ;;
@@ -71,42 +52,56 @@ Hexadecimal [16-Bits]
                              46 ;;Estas no se si estan bien. Fran no las incluye en el video
                              47 .globl _num_entities
                              48 .globl _entity_array
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 
 
+                              2 .include "render_system.h.s"
+                              1 ;;
+                              2 ;;  CABECERA DE LAS FUNCIONES DE RENDERSYS
+                              3 ;;
+                              4 .globl rendersys_init
+                              5 .globl rendersys_update
                               6 
-   0000                       7 rendersys_init::
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
+Hexadecimal [16-Bits]
+
+
+
+                              3 
+                              4 
+   0000 14 14 02 08 01 01     5 player: .db 20, 20, 2,  8,  1, 1, 0xFF
+        FF
+   0007 28 50 03 0C FF 00     6 enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
+        F0
+                              7 
                               8 
-   0000 C9            [10]    9 ret
+   000E                       9 man_game_init::
                              10 
-                             11 ;;INPUT 
-                             12 ;; IX PUNTERO A LA PRIMERA ENTIDAD
-                             13 ;; A NUMERO DE ENTIDADES A RENDERIZAR
-                             14 
-   0001                      15 rendersys_update::
-   0001                      16 _renloop:
-                             17 
-   0001 F5            [11]   18     push af
-   0002 11 00 C0      [10]   19     ld de, #0xC000
-   0005 DD 4E 00      [19]   20     ld c, e_x(ix)
-   0008 DD 46 01      [19]   21     ld b, e_y(ix)
-                             22         
-   000B CD 00 00      [17]   23     call cpct_getScreenPtr_asm
-                             24 
-                             25     ;;Pintar 
-   000E EB            [ 4]   26     ex de, hl
-   000F DD 7E 06      [19]   27     ld a, e_col(ix)
-   0012 DD 4E 02      [19]   28     ld c, e_w(ix)
-   0015 DD 46 03      [19]   29     ld b, e_h(ix)    
-   0018 CD 00 00      [17]   30     call cpct_drawSolidBox_asm
-   001B F1            [10]   31     pop af
+   000E CD 00 00      [17]   11  call man_entity_init
+                             12  ;;call sys_eren_init
+                             13  ;;call sys_physics_init
+                             14  ;;call sys_input_init
+                             15 
+                             16  ;;ld hl, #player
+                             17  ;;call man_entity_create
+                             18 
+                             19  ;;ld hl, enemy
+                             20  ;;call man_entity_create
+                             21 
+   0011 C9            [10]   22 ret
+                             23 
+   0012                      24 man_game_update::
+                             25 
+                             26     ;;call man_entity_getArray
+                             27     ;;call sys_input_update
+                             28     ;;call man_entity_getArray
+                             29     ;;call sys_physics_update
+                             30 
+   0012 C9            [10]   31 ret
                              32 
-   001C 3D            [ 4]   33     dec a 
-   001D C8            [11]   34     ret z
-   001E 01 07 00      [10]   35     ld bc, #sizeof_e
-   0021 DD 09         [15]   36     add ix, bc
-   0023 18 DC         [12]   37     jr _renloop
-                             38 
-   0025 C9            [10]   39 ret
+   0013                      33 man_game_render::
+                             34     ;;call man_entity_getArray
+                             35     ;;call sys_eren_update
+   0013 C9            [10]   36 ret

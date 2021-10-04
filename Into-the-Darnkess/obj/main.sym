@@ -57,21 +57,25 @@ Symbol Table
     _entity_   **** GX  |   0 _main      000E GR  |     _num_ent   **** GX
     cpct_dis   **** GX  |     cpct_dra   **** GX  |     cpct_get   **** GX
     cpct_pag=  0000     |     cpct_pag=  0010     |     cpct_pag=  0020 
-    cpct_pag=  0030     |     cpct_wai   **** GX  |   0 enemy      0007 R
+    cpct_pag=  0030     |     cpct_wai   **** GX  |     e_col   =  0006 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-    entityma   **** GX  |   0 loop       0027 R   |     opc_DI  =  00F3 
-    opc_EI  =  00FB     |     opc_JR  =  0018     |     opc_LD_D=  0016 
-  0 player     0000 R   |     rendersy   **** GX
+    e_h     =  0003     |     e_vx    =  0004     |     e_vy    =  0005 
+    e_w     =  0002     |     e_x     =  0000     |     e_y     =  0001 
+  0 enemy      0007 R   |     entityma   **** GX  |     entityma   **** GX
+    entityma   **** GX  |   0 loop       0024 R   |     man_enti   **** GX
+    man_enti   **** GX  |     opc_DI  =  00F3     |     opc_EI  =  00FB 
+    opc_JR  =  0018     |     opc_LD_D=  0016     |   0 player     0000 R
+    rendersy   **** GX  |     rendersy   **** GX  |     sizeof_e=  0007 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   2C   flags    0
+   0 _CODE      size   32   flags    0
    1 _DATA      size    0   flags    0
 

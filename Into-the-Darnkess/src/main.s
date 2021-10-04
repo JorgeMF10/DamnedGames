@@ -19,19 +19,22 @@ _main::
    ;; Disable firmware to prevent it from interfering with string drawing
    call cpct_disableFirmware_asm
 
-   call rendersys_init
-
    ld hl, #player
    call entityman_create
-
+   
    ld hl, #enemy
    call entityman_create
+
+   ;;call rendersys_init
+   ;;call man_game_init
 
    ld ix, #_entity_array
    ld a, (_num_entities)
 
    
 loop:
+
+
    call entityman_getEntityVector_IX
    call entityman_getNumEntities_A
    call rendersys_update
