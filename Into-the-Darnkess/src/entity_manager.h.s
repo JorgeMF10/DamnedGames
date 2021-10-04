@@ -22,7 +22,7 @@
 
 .macro DefineEntity _name, _x, _y, _vx, _vy, _w, _h, _color
     _name::
-        DefineEntityAnnonimous
+        DefineEntityAnnonimous _x, _y, _vx, _vy, _w, _h, _color
 .endm
 
 .macro DefineEntityArray _name, _N
