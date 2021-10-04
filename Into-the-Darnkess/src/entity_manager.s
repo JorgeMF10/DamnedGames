@@ -2,6 +2,7 @@
 ;; ENTITY MANAGER
 ;;
 .include "entity_manager.h.s"
+.include "cpctelera.h.s"
 
 max_entities == 3
 
@@ -50,32 +51,15 @@ man_entity_new::
     ret
 ret
 
-entityman_creater::
+entityman_create::
 
     push hl
     call man_entity_new ;;Cargo una nueva entidad al vector
 
-    ;;ld__ixh_d
-    ;;ld__ixl_e
+    ld__ixh_d
+    ld__ixl_e
 
-    pop hl
+    pop hl 
+    ldir ;;copia de hl en de todos los bytes que indique bc
     
-    ldir 
-ret
-
-entityman_create::
-    
-    ld de, (_last_elem_ptr)
-    ld bc, #sizeof_e
-    ldir
-
-    ld a, (_num_entities)
-    inc a
-    ld (_num_entities), a
-
-    ld hl, (_last_elem_ptr)
-    ld bc, #sizeof_e
-    add hl, bc
-    ld (_last_elem_ptr), hl
-
 ret

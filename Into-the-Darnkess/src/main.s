@@ -8,8 +8,8 @@
 .area _DATA
 .area _CODE
 
-player: .db 20, 20, 2,  8,  1, 1, 0xFF
-enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
+player: .db 20, 20, 2,  8,  1, 1, 0xFF, 0, 0xC000
+enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0, 0, 0xC000
 
 
 ;;DefineEntity player, 20, 20, 1, 1, 2, 8, 0xF0
