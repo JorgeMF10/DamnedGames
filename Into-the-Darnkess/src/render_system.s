@@ -3,9 +3,17 @@
 ;; 
 .include "cpctelerafunction.h.s"
 .include "entity_manager.h.s"
+.include "cpctelera.h.s"
+
+screen_start = 0xC000
 
 rendersys_init::
-
+    ld c, #0x00
+    call cpct_setVideoMode_asm
+    ;;ld hl, #_pal_main
+    ;;ld de, #16
+    ;;call cpct_setPalette_asm
+    ;;call cpctm_setBorder_asm
 ret
 
 ;;INPUT 

@@ -3,6 +3,7 @@
 ;;
 .globl entityman_getEntityVector_IX
 .globl entityman_getNumEntities_A
+.globl man_entity_getArray
 .globl entityman_create
 .globl man_entity_new
 .globl man_entity_init

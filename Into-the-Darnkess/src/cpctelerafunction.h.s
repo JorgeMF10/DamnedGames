@@ -3,3 +3,6 @@
 .globl cpct_getScreenPtr_asm
 .globl cpct_drawSolidBox_asm
 .globl cpct_waitVSYNC_asm
+.globl cpct_scanKeyboard_f_asm
+.globl cpct_isKeyPressed_asm
+.globl cpct_setVideoMode_asm
