@@ -7,8 +7,8 @@
 ;;enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
 
 
-DefineEntity player, 20, 20, 2, 8, 1, 1, 0xF0
-DefineEntity enemy, 40, 80, 3, 12, -1, 0, 0xFF
+DefineEntity player, 20, 20, 2, 8, 1, 1, 0xF0, 0
+DefineEntity enemy, 40, 80, 3, 12, -1, 0, 0xFF, 0
 
 man_game_init::
 
