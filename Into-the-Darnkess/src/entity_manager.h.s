@@ -9,7 +9,7 @@
 .globl man_entity_init
 
 ;;Macro creacion de entidades
-.macro DefineEntityAnnonimous _x, _y, _vx, _vy, _w, _h, _color, _linterna
+.macro DefineEntityAnnonimous _x, _y, _vx, _vy, _w, _h, _color, _lastpos, _linterna
    
    .db _x
    .db _y
@@ -18,19 +18,20 @@
    .db _w
    .db _h
    .db _color
+   .dw _lastpos
    .db _linterna
    
 .endm
 
-.macro DefineEntity _name, _x, _y, _vx, _vy, _w, _h, _color, _linterna
+.macro DefineEntity _name, _x, _y, _vx, _vy, _w, _h, _color,_lastpos ,_linterna
     _name::
-        DefineEntityAnnonimous _x, _y, _vx, _vy, _w, _h, _color, _linterna
+        DefineEntityAnnonimous _x, _y, _vx, _vy, _w, _h, _color,_lastpos ,_linterna
 .endm
 
 .macro DefineEntityArray _name, _N
     _name::
         .rept _N
-            DefineEntityAnnonimous 0xDE, 0xAD, 0xDE, 0xAD, 0xDE, 0xAD, 0xDE, 0xAA
+            DefineEntityAnnonimous 0xDE, 0xAD, 0xDE, 0xAD, 0xDE, 0xAD, 0xDE, 0xAD, 0xAA
         .endm
 .endm
 
@@ -41,8 +42,10 @@ e_h = 3
 e_vx = 4
 e_vy = 5
 e_col = 6
-e_lantern = 7
-sizeof_e = 8
+e_lastposH = 7
+e_lastposL = 8
+e_lantern = 9
+sizeof_e = 10
 
 ;;
 ;;CONSTANTES
