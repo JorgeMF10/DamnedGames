@@ -3,12 +3,12 @@
 .include "physics.h.s"
 .include "input.h.s"
 
-;;player: .db 20, 20, 2,  8,  1, 1, 0xFF
+;;player: .db 20, 20, 2,  8,  1, 1, 0xF0, 0xC000
 ;;enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
 
 
-DefineEntity player, 20, 20, 2, 8, 1, 1, 0xF0
-DefineEntity enemy, 40, 80, 3, 12, -1, 0, 0xFF
+DefineEntity player, 20, 20, 2,  8,  1, 1, 0xF0, 0xC000, 0
+;;DefineEntity enemy,  40, 80, 3, 12, -1, 0, 0xFF, 0xC000, 0
 
 man_game_init::
 
@@ -35,6 +35,6 @@ man_game_update::
 ret
 
 man_game_render::
-    ;;call man_entity_getArray
-    ;;call sys_eren_update
+    call man_entity_getArray
+    call rendersys_update
 ret

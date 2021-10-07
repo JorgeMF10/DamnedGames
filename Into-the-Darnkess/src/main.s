@@ -26,12 +26,11 @@ _main::
    ld a, (_num_entities)
 
 loop:
-
+   ;; Loop forever
    call entityman_getEntityVector_IX
    call entityman_getNumEntities_A
-   call rendersys_update
+   call man_game_render
    call cpct_waitVSYNC_asm
    call man_game_update
-   ;; Loop forever
 
    jr    loop

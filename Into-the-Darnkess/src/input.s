@@ -9,7 +9,7 @@ sys_input_update::
 
     ld e_vx(ix), #0
     ld e_vy(ix), #0
-
+        
     call cpct_scanKeyboard_f_asm
 
     ld hl, #Key_O
@@ -39,4 +39,14 @@ Q_NotPressed:
 A_Pressed:
     ld e_vy(ix), #2
 A_NotPressed:
+    ld hl, #Key_Space
+    call cpct_isKeyPressed_asm
+    jr z, Space_Not_Pressed
+Space_Pressed:
+    ld a, e_lantr(ix)  
+    ;ld e_col(ix), #0xFF  
+    xor a, #0x01
+    ld e_lantr(ix), a
+Space_Not_Pressed:
+
 ret
