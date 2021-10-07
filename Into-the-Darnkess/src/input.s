@@ -39,14 +39,14 @@ Q_NotPressed:
 A_Pressed:
     ld e_vy(ix), #2
 A_NotPressed:
-    ld hl, #Key_Space
+    ld hl, #Key_W
     call cpct_isKeyPressed_asm
-    jr z, Space_Not_Pressed
-Space_Pressed:
+    jr z, W_Not_Pressed
+W_Pressed:
     ld a, e_lantr(ix)  
     ;ld e_col(ix), #0xFF  
     xor a, #0x01
     ld e_lantr(ix), a
-Space_Not_Pressed:
+W_Not_Pressed:
 
 ret
