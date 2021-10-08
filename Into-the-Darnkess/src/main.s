@@ -29,8 +29,9 @@ loop:
    ;; Loop forever
    call entityman_getEntityVector_IX
    call entityman_getNumEntities_A
-   call man_game_render
-   call cpct_waitVSYNC_asm
    call man_game_update
+   call cpct_waitVSYNC_asm
+   
+   call man_game_render
 
    jr    loop
