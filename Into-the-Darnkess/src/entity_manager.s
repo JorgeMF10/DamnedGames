@@ -59,7 +59,7 @@ entityman_create::
     ld__ixh_d
     ld__ixl_e
 
-    pop hl 
-    ldir ;;copia de hl en de todos los bytes que indique bc
+    pop hl
     
+    ldir 
 ret

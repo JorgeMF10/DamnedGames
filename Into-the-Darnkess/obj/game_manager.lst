@@ -1,0 +1,107 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 1.
+Hexadecimal [16-Bits]
+
+
+
+                              1 .include "entity_manager.h.s"
+                              1 ;;
+                              2 ;;CABECERA DE ENTITYMANAGER
+                              3 ;;
+                              4 .globl entityman_getEntityVector_IX
+                              5 .globl entityman_getNumEntities_A
+                              6 .globl entityman_create
+                              7 .globl man_entity_new
+                              8 .globl man_entity_init
+                              9 
+                             10 ;;Macro creacion de entidades
+                             11 .macro DefineEntityAnnonimous _x, _y, _vx, _vy, _w, _h, _color
+                             12    
+                             13    .db _x
+                             14    .db _y
+                             15    .db _vx
+                             16    .db _vy
+                             17    .db _w
+                             18    .db _h
+                             19    .db _color
+                             20    
+                             21 .endm
+                             22 
+                             23 .macro DefineEntity _name, _x, _y, _vx, _vy, _w, _h, _color
+                             24     _name::
+                             25         DefineEntityAnnonimous
+                             26 .endm
+                             27 
+                             28 .macro DefineEntityArray _name, _N
+                             29     _name::
+                             30         .rept _N
+                             31             DefineEntityAnnonimous 0xDE, 0xAD, 0xDE, 0xAD, 0xDE, 0xAD, 0xAA
+                             32         .endm
+                             33 .endm
+                             34 
+                     0000    35 e_x = 0
+                     0001    36 e_y = 1
+                     0002    37 e_w = 2
+                     0003    38 e_h = 3
+                     0004    39 e_vx = 4
+                     0005    40 e_vy = 5
+                     0006    41 e_col = 6
+                     0007    42 sizeof_e = 7
+                             43 
+                             44 ;;
+                             45 ;;CONSTANTES
+                             46 ;;Estas no se si estan bien. Fran no las incluye en el video
+                             47 .globl _num_entities
+                             48 .globl _entity_array
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+
+
+                              2 .include "render_system.h.s"
+                              1 ;;
+                              2 ;;  CABECERA DE LAS FUNCIONES DE RENDERSYS
+                              3 ;;
+                              4 .globl rendersys_init
+                              5 .globl rendersys_update
+                              6 
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
+Hexadecimal [16-Bits]
+
+
+
+                              3 
+                              4 
+   0000 14 14 02 08 01 01     5 player: .db 20, 20, 2,  8,  1, 1, 0xFF
+        FF
+   0007 28 50 03 0C FF 00     6 enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
+        F0
+                              7 
+                              8 
+   000E                       9 man_game_init::
+                             10 
+   000E CD 00 00      [17]   11  call man_entity_init
+                             12  ;;call sys_eren_init
+                             13  ;;call sys_physics_init
+                             14  ;;call sys_input_init
+                             15 
+                             16  ;;ld hl, #player
+                             17  ;;call man_entity_create
+                             18 
+                             19  ;;ld hl, enemy
+                             20  ;;call man_entity_create
+                             21 
+   0011 C9            [10]   22 ret
+                             23 
+   0012                      24 man_game_update::
+                             25 
+                             26     ;;call man_entity_getArray
+                             27     ;;call sys_input_update
+                             28     ;;call man_entity_getArray
+                             29     ;;call sys_physics_update
+                             30 
+   0012 C9            [10]   31 ret
+                             32 
+   0013                      33 man_game_render::
+                             34     ;;call man_entity_getArray
+                             35     ;;call sys_eren_update
+   0013 C9            [10]   36 ret
