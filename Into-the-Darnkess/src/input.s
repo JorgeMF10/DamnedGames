@@ -44,9 +44,22 @@ A_NotPressed:
     jr z, W_Not_Pressed
 W_Pressed:
     ld a, e_lantr(ix)  
-    ;ld e_col(ix), #0xFF  
-    xor a, #0x01
+    xor a, #01
     ld e_lantr(ix), a
+    ;;xor e_lantr(ix), #01
 W_Not_Pressed:
+
+    ld e_ai_aim_x(ix), #0
+    ld hl, #Key_Space
+    call cpct_isKeyPressed_asm
+    jr z, Spc_NotPressed
+
+Spc_Pressed:
+
+    ld e_ai_aim_x(ix), #1
+
+Spc_NotPressed:
+
+
 
 ret

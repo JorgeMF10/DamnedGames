@@ -7,8 +7,10 @@
 ;;player: .db 20, 20, 2,  8,  1, 1, 0xF0, 0xC000
 ;;enemy:  .db 40, 80, 3, 12, -1, 0, 0xF0
 
-DefineEntity player,   20, 20, 2,  8,  1, 1, 0xF0, 0xC000, 0, e_ai_st_noAI
-DefineEntity enemy,    40, 80, 3, 12, -1, 0, 0xFF, 0xC000, 0, e_ai_st_stand_by
+;;                     x    y  H   W   vx vy Color VMPtr   ltr IAState
+
+DefineEntity player,   20, 20, 2,  8,  1, 1, 0xF0, 0xC000,  0, e_ai_st_noAI
+DefineEntity enemy,    40, 80, 3, 12,  -1, 0, 0xFF, 0xC000, 0, e_ai_st_stand_by
 
 man_game_init::
 
