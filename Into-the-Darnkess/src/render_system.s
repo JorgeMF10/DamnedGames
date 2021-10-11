@@ -29,15 +29,32 @@ rendersys_init::
     ld bc, #0x4000
     ldir 
     ;;esto consume muchisima memoria a si que en el update/loop no se puede usar
+    ;;ld hl, #_pal_main
+    ;;ld de, #16
+    ;;call cpct_setPalette_asm
+    ;;call cpctm_setBorder_asm
 ret
 
+_pintarlinterna:
+    ld a, e_lantr(ix)
+    dec a
+    jr z, encendida
+
+    ld a, #0xFF
+    call pintarcubo
+
+    ret
+    encendida:
+    ld a, #0x0F
+    call pintarcubo
+    ret
 
 ;;Llega en A el color
-;;pintarcubo:
-;;    ld c, e_w(ix)
-;;    ld b, e_h(ix)
-;;    call cpct_drawSolidBox_asm
-;;ret
+pintarcubo:
+    ld c, e_w(ix)
+    ld b, e_h(ix)
+    call cpct_drawSolidBox_asm
+ret
 
 ;;INPUT 
 ;; IX PUNTERO A LA PRIMERA ENTIDAD
@@ -74,13 +91,7 @@ _renloop:
 
 
     ;; scroll por hardware + pintar fila de pixeles + borrar y pintar pintando encima con 4 de fondo y 3 de arriba redefininedo la paleta
-    ld a, e_lantr(ix)
-    dec a
-    jr z, encendida
-    ld e_sprite(ix), #_sp_chars_0
-    encendida:
-    ld e_sprite(ix), #_sp_chars_1
-
+     call _pintarlinterna
     pop af
 
     dec a 
