@@ -66,7 +66,7 @@ _renloop:
     ld a, e_col(ix)
     call pintarcubo
 
-    call _pintarlinterna
+    ;;call _pintarlinterna
 
     pop af
 

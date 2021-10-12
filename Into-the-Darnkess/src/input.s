@@ -60,6 +60,4 @@ Spc_Pressed:
 
 Spc_NotPressed:
 
-
-
 ret
