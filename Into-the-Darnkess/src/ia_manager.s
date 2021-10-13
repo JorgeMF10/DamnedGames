@@ -27,7 +27,7 @@ ret
 sys_ai_move_to::
     
     ld e_vy(ix), #0
-
+    
     ld a, e_ai_aim_x(ix) ;; A = x_obj
     sub e_x(ix)
     jr nc, _objx_greater_or_equal
@@ -35,16 +35,13 @@ sys_ai_move_to::
 _objx_lesser:
     ld e_vx(ix), #-1
     jr _endif_x
-
 _objx_greater_or_equal:
     jr z, _arrived_x
-    ld e_vx(ix),#1
+    ld e_vx(ix), #1
     jr _endif_x
-
 _arrived_x:
     ld e_vx(ix), #0
-    ld e_ai_st(ix), #e_ai_st_stand_by
-
+    ld e_ai_st(ix), #e_ai_st_stand_by 
 _endif_x:
 
 ret
@@ -61,16 +58,14 @@ _loop:
 
     jr z, _no_AI_ent
 
-_AI_ent:    
+_AI_ent:   
+
     cp #e_ai_st_stand_by
     call z, sys_ai_stand_by
     cp #e_ai_st_move_to
     call z, sys_ai_move_to
 
-    
-
 _no_AI_ent:
-
 
 _ent_counter = . + 1
     ld a, #0

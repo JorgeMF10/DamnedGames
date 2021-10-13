@@ -5,10 +5,11 @@
 .include "ia_managers.h.s"
 
 
-;;                      x   y   H  W   vx  vy  Color VMPtr   ltr IAState
+;;                      x   y   h   w    vx  vy   Color VMPtr   ltr IAState
+DefineEntity player,    50, 50, 2,  8,   1,  1, 0xF0, 0xC000,  0, e_ai_st_noAI
+DefineEntity enemy ,    40, 80, 4,  16,  1, -1, 0xFF, 0xC000,  0, e_ai_st_move_to
+DefineEntity bloc  ,    30, 30, 2,  8,   0,  0, 0x0F, 0xC000,  0, e_ai_st_noAI
 
-DefineEntity player,   20, 20, 2,  8,   1,  1, 0xF0, 0xC000,  0, e_ai_st_noAI
-DefineEntity enemy,    40, 80, 3, 12,   1, -1, 0xFF, 0xC000,  0, e_ai_st_stand_by
 
 
 man_game_init::
@@ -24,6 +25,9 @@ man_game_init::
     call entityman_create
        
     ld hl, #enemy
+    call entityman_create
+
+    ld hl, #bloc
     call entityman_create
 
 ret

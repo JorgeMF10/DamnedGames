@@ -49,7 +49,8 @@ _renloop:
     ld e, e_prevptr+0(ix)
     ld d, e_prevptr+1(ix)
     xor a
-    ld bc, #0x2004
+    ld b, e_h(ix)
+    ld c, e_w(ix)
     call cpct_drawSolidBox_asm
 
     ld de, #0xC000

@@ -13,22 +13,14 @@ _main::
    ;; Disable firmware to prevent it from interfering with string drawing
    call cpct_disableFirmware_asm
 
-   ;;ld hl, #player
-   ;;call entityman_create
-   
-   ;;ld hl, #enemy
-   ;;call entityman_create
-
    call rendersys_init
-   call man_game_init
-
-   ld ix, #_entity_array
-   ld a, (_num_entities)
+   call man_game_init ;; Se crean las entidades
+   
+   call man_entity_getArray
 
 loop:
-   ;; Loop forever
-   call entityman_getEntityVector_IX
-   call entityman_getNumEntities_A
+   ;; Loop forever   
+   call man_entity_getArray
    call man_game_update
    call cpct_waitVSYNC_asm
    

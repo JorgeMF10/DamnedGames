@@ -11,8 +11,6 @@ _last_elem_ptr:: .dw _entity_array
 
 DefineEntityArray _entity_array, max_entities
 
-;;DefineComponentArrayStructure _entity, max_entities, Definecmp_EntityDefault
-
 entityman_getEntityVector_IX::
 
     ld ix, #_entity_array
