@@ -24,11 +24,12 @@ e_ai_st_move_to  = 2
    .db _vy          ;; Vel Y
    .db _w           ;; Width
    .db _h           ;; Height
-   .db _color       ;; Color
-   .dw _prevptr     ;; Puntero a la ultima posicion en pantalla
+   .db _color       ;; Color 
+   .dw _prevptr     ;; Puntero a la ultima posicion en pantalla 
    .db _lantern     ;; Estado de la linterna
    .db 0x00, 0x00   ;; AI aim X AI aim y
    .db _aist        ;; Status IA
+   
 .endm
 
 .macro DefineEntity _name, _x, _y, _vx, _vy, _w, _h, _color, _prevptr, _lantern, _aist

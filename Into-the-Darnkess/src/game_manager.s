@@ -4,10 +4,9 @@
 .include "input.h.s"
 .include "ia_managers.h.s"
 
-
 ;;                      x   y   h   w    vx  vy   Color VMPtr   ltr IAState
 DefineEntity player,    50, 50, 2,  8,   0,  0, 0xF0, 0xC000,  0, e_ai_st_noAI
-DefineEntity enemy ,    40, 80, 4,  16, -1,  1, 0xFF, 0xC000,  0, e_ai_st_stand_by
+DefineEntity enemy ,    50, 50, 4,  16,  1,  0, 0xFF, 0xC000,  0, e_ai_st_stand_by
 DefineEntity bloc  ,    30, 30, 4,  16,  0,  0, 0x0F, 0xC000,  0, e_ai_st_noAI
 
 man_game_init::
@@ -32,7 +31,7 @@ ret
 
 man_game_update::
 
-    call man_entity_getArray
+    call entityman_getEntityVector_IX
     call sys_input_update
     call man_entity_getArray
     call sys_ai_update

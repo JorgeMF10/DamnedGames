@@ -10,9 +10,6 @@ ret
 
 sys_ai_stand_by::
 
-    ;;ld e_vx(ix), #-1
-    ;;ld e_vy(ix), #-1
-
 _ent_array_ptr_temp_standby = .+2
     ld iy, #0x0000
 
@@ -51,7 +48,6 @@ _objx_greater_or_equal:
 _arrived_x:
 
     ld e_vx(ix), #0
-    ld e_ai_st(ix), #e_ai_st_stand_by 
 
 _endif_x:
 
