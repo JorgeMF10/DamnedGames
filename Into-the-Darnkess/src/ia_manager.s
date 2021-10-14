@@ -28,21 +28,21 @@ sys_ai_move_to::
     
     ld e_vy(ix), #0
     
-    ld a, e_ai_aim_x(ix) ;; A = x_obj
-    sub e_x(ix)
-    jr nc, _objx_greater_or_equal
-
-_objx_lesser:
-    ld e_vx(ix), #-1
-    jr _endif_x
-_objx_greater_or_equal:
-    jr z, _arrived_x
-    ld e_vx(ix), #1
-    jr _endif_x
-_arrived_x:
-    ld e_vx(ix), #0
-    ld e_ai_st(ix), #e_ai_st_stand_by 
-_endif_x:
+;;    ld a, e_ai_aim_x(ix) ;; A = x_obj
+;;    sub e_x(ix)
+;;    jr nc, _objx_greater_or_equal
+;;
+;;_objx_lesser:
+;;    ld e_vx(ix), #-1
+;;    jr _endif_x
+;;_objx_greater_or_equal:
+;;    jr z, _arrived_x
+;;    ld e_vx(ix), #1
+;;    jr _endif_x
+;;_arrived_x:
+;;    ld e_vx(ix), #0
+;;    ld e_ai_st(ix), #e_ai_st_stand_by 
+;;_endif_x:
 
 ret
 
